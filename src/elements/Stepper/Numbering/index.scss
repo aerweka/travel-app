@@ -1,0 +1,76 @@
+@import "../../assets/scss/colors";
+
+$stepperMainColor: $gray-200;
+$size: 50px;
+
+ol.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+
+  li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $size;
+    height: $size;
+    border-radius: $size;
+    color: $white;
+
+    &::after {
+      position: absolute;
+      content: "";
+      z-index: 2;
+      width: $size;
+      height: $size;
+      border-radius: $size;
+      //   background-image: url('data:image/svg+xml;utf8,<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      //   viewBox="0 0 278.922 278.922" style="enable-background:new 0 0 278.922 278.922;" xml:space="preserve">
+      //  <path style="fill:#010002;" d="M128.775,265.136l146.36-214.392c6.772-9.926,4.215-23.459-5.706-30.236L251.459,8.244
+      //    c-9.921-6.772-23.464-4.221-30.236,5.706L100.171,191.268l-53.14-37.916c-9.779-6.978-23.366-4.71-30.345,5.075l-12.64,17.71
+      //    c-6.978,9.779-4.705,23.366,5.075,30.345l89.679,63.985C108.58,277.445,122.004,275.057,128.775,265.136z"/></svg>');
+      background-image: url(../../../assets/images/icons/icon-check.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: $teal;
+      transform: scale(1);
+      transition: 0.35s transform ease-in-out;
+    }
+
+    &:not(:last-child) {
+      margin-right: 60px;
+      &::before {
+        content: "";
+        z-index: -2;
+        top: 50%;
+        left: 100%;
+        position: absolute;
+        width: $size + 10;
+        height: 1px;
+        background-color: $stepperMainColor;
+      }
+    }
+
+    &:active {
+      &:after {
+        z-index: -1;
+        background: $white;
+        border: 1px solid $stepperMainColor;
+        transform: scale(1.2);
+      }
+      background-color: $stepperMainColor;
+      columns: $gray-500;
+
+      & ~ li {
+        color: $gray-500;
+        background: $stepperMainColor;
+        &::after {
+          content: none;
+        }
+      }
+    }
+  }
+}
